@@ -42,14 +42,14 @@ flowchart TD
 
 ## 1. 기드라 MCP(`ghidra-re-operator`) 실전 바이너리 역분석 (PE Dissection)
 
-`_BY_PASSS\github\References\01_배치난독화_GitHub_28종` 및 `_BY_PASSS\[01_백신우회_난독화]\02_네이티브_패커`에 수록된 실제 실행 파일들을 대상으로 `ghidra-re-operator` MCP를 호출하여 추출한 정밀 바이너리 분석 결과이다.
+`_BY_PASSS\github\References\references/batch_corpus_28` 및 `_BY_PASSS\[01_백신우회_난독화]\02_네이티브_패커`에 수록된 실제 실행 파일들을 대상으로 `ghidra-re-operator` MCP를 호출하여 추출한 정밀 바이너리 분석 결과이다.
 
 ### 1.1. Native PE + UPX 패커 스텁 및 7zSFX 파이프라인: `bat2exe-islamadel`
 
 `bat2exe-islamadel` 저장소는 레거시 네이티브 바이너리(`bat2exe_12.exe`)와 현대화된 7-Zip SFX 빌더 스크립트(`bat2exe.cmd`) 두 가지 아키텍처를 모두 포함하고 있다.
 
 #### (1) `bat2exe_12.exe` PE 헤더 및 섹션 테이블 (`re_triage_binary`)
-- **파일 경로**: `References\01_배치난독화_GitHub_28종\bat2exe-islamadel\source\archiv\bat2exe_12.exe`
+- **파일 경로**: `References\references/batch_corpus_28\bat2exe-islamadel\source\archiv\bat2exe_12.exe`
 - **파일 크기**: `1,079,589` Bytes (1.05 MB)
 - **아키텍처**: `x86 (32-bit)`
 - **Image Base**: `0x400000`
@@ -139,7 +139,7 @@ copy /y "%name%.tmp" "%TF%\%name%.exe"
 
 ### 1.2. Visual Basic 6.0 네이티브 디코더 바이너리: `BEDeCode.exe`
 
-- **대상 파일**: `References\01_배치난독화_GitHub_28종\Batch-Encryption-DeCoder\bin\BEDeCode.exe`
+- **대상 파일**: `References\references/batch_corpus_28\Batch-Encryption-DeCoder\bin\BEDeCode.exe`
 - **파일 크기**: `69,632` Bytes (68 KB)
 - **아키텍처**: `x86 (32-bit)`
 - **Entry Point (RVA)**: `0x1670` (File Offset: `0x1670` / `5744`)
@@ -299,7 +299,7 @@ File.WriteAllBytes(dropPath, bytesBack);
 ## 2. 7대 핵심 도구 원본 소스코드 라인별 심층 해부 (Source Code Dissection)
 
 ### 2.1. `Invoke-DOSfuscation` (Mandiant / Daniel Bohannon)
-- **경로**: `References\01_배치난독화_GitHub_28종\Invoke-DOSfuscation\Invoke-DOSfuscation.psm1`
+- **경로**: `References\references/batch_corpus_28\Invoke-DOSfuscation\Invoke-DOSfuscation.psm1`
 - **규모**: 총 `7,726` 라인 (443 KB)의 방대한 PowerShell 모듈
 
 #### [핵심 해부 1] 4-Way 양수/음수 인덱스 순열 생성 알고리즘 (`Out-EnvVarEncodedCommand`, Lines 1591-1688)
@@ -344,7 +344,7 @@ if ($randomFront.ValueFront -eq $randomFront.ValueBack) {
 ---
 
 ### 2.2. `SomalifuscatorV2` (KingKDot)
-- **경로**: `References\01_배치난독화_GitHub_28종\SomalifuscatorV2\src\util\obfuscation\obfuscate.py`
+- **경로**: `References\references/batch_corpus_28\SomalifuscatorV2\src\util\obfuscation\obfuscate.py`
 - **언어**: Python
 
 #### [핵심 해부 1] UTF-16 LE BOM 헤더 주입 및 화면 초기화 트릭 (`obfuscate.py`, Lines 313-362)
@@ -377,7 +377,7 @@ def convert_code_chunk_and_write_bytes(self, code_chunk: Code_Block) -> None:
 ---
 
 ### 2.3. `BatCloak` / `BatchGuard Pro` (현대 웹/CLI 하이브리드 난독화기)
-- **경로**: `References\01_배치난독화_GitHub_28종\BatCloak\src\logic\obfuscator.js`
+- **경로**: `References\references/batch_corpus_28\BatCloak\src\logic\obfuscator.js`
 - **언어**: JavaScript (ES6)
 
 #### [핵심 해부] 8바이트 매직 헤더(`HEADER_BYTES`) 및 사용자 변수 AST 스크램블링 (`obfuscator.js`, Lines 6-80)
@@ -428,7 +428,7 @@ export const scrambleVariables = (content) => {
 ---
 
 ### 2.4. `Exorcism` (Rust 기반 `cmd.exe` 런타임 메모리 후킹 디버거)
-- **경로**: `References\01_배치난독화_GitHub_28종\Exorcism\cmdtest\src\cmd.rs` 및 `hooks.rs`
+- **경로**: `References\references/batch_corpus_28\Exorcism\cmdtest\src\cmd.rs` 및 `hooks.rs`
 - **언어**: Rust (`detour` 크레이트 활용 인라인 후킹)
 
 #### [핵심 해부 1] 비공개 `cmd.exe` 내부 AST 구조체(`CmdNode`) 메모리 레이아웃 복원 (`cmd.rs`, Lines 14-59)
@@ -502,7 +502,7 @@ extern "C" fn hooked_find_fix_and_run(cmdnode: *mut CmdNode) -> i32 {
 ---
 
 ### 2.5. `0xidiz3r` (Rust 제로-리터럴 부트스트래핑 엔진)
-- **경로**: `References\01_배치난독화_GitHub_28종\0xidiz3r\src\batch\obfuscator.rs`
+- **경로**: `References\references/batch_corpus_28\0xidiz3r\src\batch\obfuscator.rs`
 - **언어**: Rust
 
 ```rust
@@ -527,12 +527,12 @@ pub fn initialize(&mut self, min: Option<u32>, max: Option<u32>, src: String) {
 ---
 
 ### 2.6. `batch_deobfuscator` (DissectMalware) & 자체 다중 패스 수렴 엔진 (`deobfuscator_engine.py`)
-- **경로 1**: `References\01_배치난독화_GitHub_28종\batch_deobfuscator\batch_deobfuscator\batch_interpreter.py`
-- **경로 2**: `References\04_탐지규칙_및_자체엔진\deobfuscator_engine.py`
+- **경로 1**: `References\references/batch_corpus_28\batch_deobfuscator\batch_deobfuscator\batch_interpreter.py`
+- **경로 2**: `References\references/detection_rules\deobfuscator_engine.py`
 
 #### 자체 다중 패스 수렴 엔진 (`deobfuscator_engine.py`, Lines 29-137) 핵심 알고리즘
 ```python
-# References/04_탐지규칙_및_자체엔진/deobfuscator_engine.py (Lines 29-55, 109-137)
+# References/references/detection_rules/deobfuscator_engine.py (Lines 29-55, 109-137)
 def strip_carets(self, text):
     """따옴표(") 내부의 캐럿은 보존하고, 따옴표 외부의 이스케이프 캐럿(^)만 정확히 제거하는 유한 상태 오토마타(FSM)"""
     result = []
@@ -592,7 +592,7 @@ def deobfuscate(self, script_content):
 
 ## 4. 방어 및 탐지 엔지니어링 (Sigma & YARA Rules)
 
-수집된 자산(`References\04_탐지규칙_및_자체엔진\rules\`)과 본 역공학 결과를 결합하여 실무 SOC/EDR에 즉시 배포 가능한 탐지 규칙이다.
+수집된 자산(`References\references/detection_rules\rules\`)과 본 역공학 결과를 결합하여 실무 SOC/EDR에 즉시 배포 가능한 탐지 규칙이다.
 
 ### 4.1. YARA 규칙: UTF-16 BOM 위장 헤더 및 PE 패커 스텁 탐지
 ```yara
