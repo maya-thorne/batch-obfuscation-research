@@ -13,6 +13,7 @@
 
 **Windows 批处理混淆、反混淆原理与核心源代码深度逆向工程档案库**
 
+[![Release](https://img.shields.io/badge/Release-v1.0.0-f43f5e.svg)](https://github.com/maya-thorne/batch-obfuscation-research/releases)
 [![Ghidra RE](https://img.shields.io/badge/Ghidra_MCP-PE_Binary_Dissection-10b981.svg)](../../BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md)
 [![References](https://img.shields.io/badge/OpenSource_Mirrors-28_Repos_%2B_HuggingFace_AI-38bdf8.svg)](../../01_배치난독화_GitHub_28종)
 [![Detection](https://img.shields.io/badge/Detection-Sigma_%26_YARA_Rules-a855f7.svg)](../../04_탐지규칙_및_자체엔진/rules)
@@ -37,6 +38,19 @@
 ---
 
 ## 🏗️ Architecture & Reverse Engineering Pipeline
+
+<p align="center">
+  <a href="https://github.com/maya-thorne/batch-obfuscation-research">
+    <img src="../assets/locales/zh-CN/architecture.svg" alt="Architecture Diagram (zh-CN)" width="100%" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/maya-thorne/batch-obfuscation-research">
+    <img src="../assets/locales/zh-CN/ast_flow.svg" alt="cmd.exe AST Engine Diagram (zh-CN)" width="100%" />
+  </a>
+</p>
+
 
 ```mermaid
 flowchart TD

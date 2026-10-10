@@ -13,6 +13,7 @@
 
 **Windows Batch (`cmd.exe`) Obfuscation, Deobfuscation & Binary Reverse Engineering Master Archive (1990s–2026)**
 
+[![Release](https://img.shields.io/badge/Release-v1.0.0-f43f5e.svg)](https://github.com/maya-thorne/batch-obfuscation-research/releases)
 [![Ghidra RE](https://img.shields.io/badge/Ghidra_MCP-PE_Binary_Dissection-10b981.svg)](./BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md)
 [![References](https://img.shields.io/badge/OpenSource_Mirrors-48_Repos_%2B_HuggingFace_AI-38bdf8.svg)](./01_배치난독화_GitHub_28종)
 [![Detection](https://img.shields.io/badge/Detection-Sigma_%26_YARA_Rules-a855f7.svg)](./04_탐지규칙_및_자체엔진/rules)
@@ -39,6 +40,19 @@ This repository is a comprehensive reverse-engineering and defensive security re
 ---
 
 ## 🏗️ System Architecture & Reverse Engineering Pipeline
+
+<p align="center">
+  <a href="https://github.com/maya-thorne/batch-obfuscation-research">
+    <img src="./docs/assets/locales/en/architecture.svg" alt="3-Layer Architecture Diagram" width="100%" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/maya-thorne/batch-obfuscation-research">
+    <img src="./docs/assets/locales/en/ast_flow.svg" alt="cmd.exe 5-Phase Parsing & AST Engine Flow" width="100%" />
+  </a>
+</p>
+
 
 ```mermaid
 flowchart TD
@@ -139,6 +153,19 @@ python 01_배치난독화_GitHub_28종/batch_deobfuscator/batch_deobfuscator/bat
 
 ---
 
-## 📄 License
+## 📄 License & Open-Source Attribution
 
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for full details.
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for full legal text.
+
+### 🏛️ Open-Source Research Attribution
+This educational and defensive research archive acknowledges and studies the seminal work of the cybersecurity research community:
+- **Invoke-DOSfuscation / Out-FINcodedCommand**: Daniel Bohannon (Mandiant / Apache 2.0 & BSD)
+- **batch_deobfuscator**: Canadian Centre for Cyber Security (CCCS) / Assemblyline (MIT)
+- **Exorcism**: Mariusz Banach / mgeeky (In-Memory `cmd.exe!FindFixAndRun` Interceptor) (MIT)
+- **SomalifuscatorV2**: Somali / Anti-VM & Echo Trap Architecture (GPL-3.0 / MIT)
+- **0xidiz3r**: kDot227 / Rust-based Bidirectional AST Obfuscator (MIT)
+- **BatCloak / ScrubCrypt**: Mandiant FLARE & Unit 42 Threat Intelligence Research
+- **Batch-Encryption-DeCoder**: s0m30n3 / VB6 P-Code Alphabet Matrix Decoder (MIT)
+- **Bat2Exe-dehoisted & xorPacker**: Open-source PE compiler analysis & UPX/Overlay extraction (MIT)
+
+*All reverse engineering, binary triaging, and decompilation materials are published strictly for authorized security auditing, threat detection engineering, and defensible defensive education.*
