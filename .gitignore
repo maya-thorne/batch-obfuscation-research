@@ -1,5 +1,30 @@
+# Python artifacts
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Security & Secrets (Zero-Leak)
+.env
+.env.*
+*.secret
+*.token
+*.key
+*.pem
+
+# Temporary files & Logs
+*.log
+*.tmp
+*.temp
+.cache/
+dist/
+build/
+
+# OS artifacts
 .DS_Store
 Thumbs.db
+desktop.ini
