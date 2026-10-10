@@ -14,10 +14,10 @@
 **Archivo de Ofuscación, Desofuscación e Ingeniería Inversa de Archivos Batch en Windows**
 
 [![Release](https://img.shields.io/badge/Release-v1.0.0-f43f5e.svg)](https://github.com/maya-thorne/batch-obfuscation-research/releases)
-[![Ghidra RE](https://img.shields.io/badge/Ghidra_MCP-PE_Binary_Dissection-10b981.svg)](../../BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md)
-[![References](https://img.shields.io/badge/OpenSource_Mirrors-28_Repos_%2B_HuggingFace_AI-38bdf8.svg)](../../01_배치난독화_GitHub_28종)
-[![Detection](https://img.shields.io/badge/Detection-Sigma_%26_YARA_Rules-a855f7.svg)](../../04_탐지규칙_및_자체엔진/rules)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
+[![Ghidra RE](https://img.shields.io/badge/Ghidra_MCP-PE_Binary_Dissection-10b981.svg)](../whitepapers/BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md)
+[![References](https://img.shields.io/badge/OpenSource_Mirrors-28_Repos_%2B_HuggingFace_AI-38bdf8.svg)](../../references/batch_corpus_28)
+[![Detection](https://img.shields.io/badge/Detection-Sigma_%26_YARA_Rules-a855f7.svg)](../../references/detection_rules/rules)
+[![License: MT-SRL](https://img.shields.io/badge/License-MT--SRL-blue.svg)](../../LICENSE)
 
 <sub>Engineered &amp; Audited by **[Maya Thorne](https://github.com/maya-thorne)** · Systems &amp; Reverse Engineering Research</sub>
 
@@ -27,12 +27,12 @@
 
 ## 📚 Master Technical Documentation (핵심 분석 백서 바로가기)
 
-1. 🔬 **[BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md](../../BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md)**
+1. 🔬 **[BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md](../whitepapers/BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md)**
    - **Ghidra MCP PE Binary Reverse Engineering**: `bat2exe_12.exe` (UPX Native Stub `0x20ea0`), `BEDeCode.exe` (VB6 Native `0x1670` `ThunRTMain` & `CHRMAPSET`), `example.exe` (.NET CLR `0x337e` `_CorExeMain` & `"batch_cmd"` resource).
    - **7 Core Tools Source Code Dissection**: `Invoke-DOSfuscation`, `BatCloak`, `SomalifuscatorV2`, `0xidiz3r`, `batch_deobfuscator` (Pushdown Automaton), `Exorcism` (`cmd.exe!FindFixAndRun` API Hooking), `Bat2Exe-dehoisted`.
-2. 📖 **[BATCH_OBFUSCATION_ENCYCLOPEDIA.md](../../BATCH_OBFUSCATION_ENCYCLOPEDIA.md)**
+2. 📖 **[BATCH_OBFUSCATION_ENCYCLOPEDIA.md](../whitepapers/BATCH_OBFUSCATION_ENCYCLOPEDIA.md)**
    - `cmd.exe` 5-Stage Parser Internals, 12 Obfuscation Techniques Taxonomy, 48 Open-Source & Hugging Face Reference Matrix.
-3. 🛡️ **[BATCH_OBFUSCATION_MASTER_GUIDE.md](../../BATCH_OBFUSCATION_MASTER_GUIDE.md)**
+3. 🛡️ **[BATCH_OBFUSCATION_MASTER_GUIDE.md](../whitepapers/BATCH_OBFUSCATION_MASTER_GUIDE.md)**
    - 30-Year Evolution Timeline (1990s MS-DOS to 2026 AI/LLM Deobfuscation), Multi-Layer Forensic Pipeline, Sigma & YARA Rules.
 
 ---
@@ -76,7 +76,7 @@ flowchart TD
 
 ## 📂 Repository Directory Structure
 
-- 📁 [`01_배치난독화_GitHub_28종/`](../../01_배치난독화_GitHub_28종) — Flattened full source code trees of 28+ open-source obfuscators, deobfuscators, runtime hookers, and compilers.
-- 📁 [`02_HuggingFace_AI_자원/`](../../02_HuggingFace_AI_자원) — `LLM4Decompile-SFT-Deobfuscate`, `c-deobfuscate-mt`, JFrog Token Entropy Dataset (ArXiv:2510.26847), EDR Telemetry & SigmaForge datasets.
-- 📁 [`03_고전_및_실전_연구샘플/`](../../03_고전_및_실전_연구샘플) — 30-Year Evolution Whitepaper, BatCloak/ScrubCrypt 3-stage forensic deep dive, and 6 PoC batch samples.
-- 📁 [`04_탐지규칙_및_자체엔진/`](../../04_탐지규칙_및_자체엔진) — Custom Python Multi-Pass Static Deobfuscator (`deobfuscator_engine.py`), Mandiant/Unit 42 whitepaper analysis, and production Sigma/YARA rules.
+- 📁 [`references/batch_corpus_28/`](../../references/batch_corpus_28) — Flattened full source code trees of 28+ open-source obfuscators, deobfuscators, runtime hookers, and compilers.
+- 📁 [`references/huggingface_ai/`](../../references/huggingface_ai) — `LLM4Decompile-SFT-Deobfuscate`, `c-deobfuscate-mt`, JFrog Token Entropy Dataset (ArXiv:2510.26847), EDR Telemetry & SigmaForge datasets.
+- 📁 [`references/classic_samples/`](../../references/classic_samples) — 30-Year Evolution Whitepaper, BatCloak/ScrubCrypt 3-stage forensic deep dive, and 6 PoC batch samples.
+- 📁 [`references/detection_rules/`](../../references/detection_rules) — Custom Python Multi-Pass Static Deobfuscator (`deobfuscator_engine.py`), Mandiant/Unit 42 whitepaper analysis, and production Sigma/YARA rules.
