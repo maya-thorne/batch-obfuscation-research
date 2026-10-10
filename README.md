@@ -31,11 +31,49 @@ This repository is a comprehensive reverse-engineering and defensive security re
 
 ### 📚 Core Technical Whitepapers (핵심 마스터 백서 3종)
 
-| Document | Scope & Technical Depth |
-| :--- | :--- |
-| 🔬 **[`BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md`](./docs/whitepapers/BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md)** | **Ghidra MCP Binary Reverse Engineering & 7 Core Tools Source Code Dissection**:<br>• Assembly & PE Section analysis of `bat2exe_12.exe` (UPX `0x20ea0`), `BEDeCode.exe` (VB6 Native `0x1670` `ThunRTMain` & `CHRMAPSET`), and `example.exe` (.NET CLR `0x337e` `_CorExeMain` & `"batch_cmd"` resource).<br>• Line-by-line source code dissection of `Invoke-DOSfuscation`, `BatCloak`, `SomalifuscatorV2`, `0xidiz3r`, `batch_deobfuscator`, `Exorcism`, and `Bat2Exe-dehoisted`. |
-| 📖 **[`BATCH_OBFUSCATION_ENCYCLOPEDIA.md`](./docs/whitepapers/BATCH_OBFUSCATION_ENCYCLOPEDIA.md)** | **Master Encyclopedia (v2.0)**:<br>• `cmd.exe` 5-Stage Preprocessing Pipeline (`%VAR%` ➔ `^` Escape ➔ `!VAR!` Delayed Expansion ➔ Delimiter Normalization ➔ `CmdNode` Dispatch).<br>• Complete taxonomy of 12 obfuscation techniques & 48 open-source/AI reference catalog. |
-| 🛡️ **[`BATCH_OBFUSCATION_MASTER_GUIDE.md`](./docs/whitepapers/BATCH_OBFUSCATION_MASTER_GUIDE.md)** | **30-Year Evolution & Detection Engineering Guide**:<br>• Chronological evolution from 1990s MS-DOS tricks to 2026 Hugging Face LLM deobfuscation.<br>• Multi-layer forensic pipeline & production-ready **Sigma / YARA** rulesets. |
+<table width="100%">
+  <thead>
+    <tr>
+      <th width="32%" align="left">📄 Document / Whitepaper</th>
+      <th width="68%" align="left">🔬 Scope &amp; Technical Depth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        🔬 <strong><a href="./docs/whitepapers/BATCH_OBFUSCATION_ARCHITECTURE_AND_CODE_ANALYSIS.md">Architecture &amp; Code Analysis</a></strong><br>
+        <code>BATCH_OBFUSCATION_<wbr>ARCHITECTURE_<wbr>AND_CODE_ANALYSIS.md</code>
+      </td>
+      <td>
+        <strong>Ghidra MCP Binary Reverse Engineering &amp; 7 Core Tools Source Dissection</strong>:<br>
+        • Assembly &amp; PE Section analysis of <code>bat2exe_12.exe</code> (UPX <code>0x20ea0</code>), <code>BEDeCode.exe</code> (VB6 Native <code>0x1670 ThunRTMain</code> &amp; <code>CHRMAPSET</code>), and <code>example.exe</code> (.NET CLR <code>0x337e _CorExeMain</code> &amp; <code>"batch_cmd"</code> resource).<br>
+        • Line-by-line source code dissection of <code>Invoke-DOSfuscation</code>, <code>BatCloak</code>, <code>SomalifuscatorV2</code>, <code>0xidiz3r</code>, <code>batch_deobfuscator</code>, <code>Exorcism</code>, and <code>Bat2Exe-dehoisted</code>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        📖 <strong><a href="./docs/whitepapers/BATCH_OBFUSCATION_ENCYCLOPEDIA.md">Master Encyclopedia (v2.0)</a></strong><br>
+        <code>BATCH_OBFUSCATION_<wbr>ENCYCLOPEDIA.md</code>
+      </td>
+      <td>
+        <strong>Master Encyclopedia (v2.0)</strong>:<br>
+        • <code>cmd.exe</code> 5-Stage Preprocessing Pipeline (<code>%VAR%</code> ➔ <code>^</code> Escape ➔ <code>!VAR!</code> Delayed Expansion ➔ Delimiter Normalization ➔ <code>CmdNode</code> Dispatch).<br>
+        • Complete taxonomy of 12 obfuscation techniques &amp; 48 open-source/AI reference catalog.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        🛡️ <strong><a href="./docs/whitepapers/BATCH_OBFUSCATION_MASTER_GUIDE.md">30-Year Evolution &amp; Guide</a></strong><br>
+        <code>BATCH_OBFUSCATION_<wbr>MASTER_GUIDE.md</code>
+      </td>
+      <td>
+        <strong>30-Year Evolution &amp; Detection Engineering Guide</strong>:<br>
+        • Chronological evolution from 1990s MS-DOS tricks to 2026 Hugging Face LLM deobfuscation.<br>
+        • Multi-layer forensic pipeline &amp; production-ready <strong>Sigma / YARA</strong> rulesets.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -132,11 +170,54 @@ batch-obfuscation-research/
 
 ## 🔬 Ghidra MCP Binary Reverse Engineering Summary
 
-| Target Binary | Architecture | Entry Point (RVA) | Key Disassembly & Structural Findings (`ghidra-re-operator`) |
-| :--- | :--- | :---: | :--- |
-| **`bat2exe_12.exe`**<br>([`bat2exe-islamadel`](./references/batch_corpus_28/bat2exe-islamadel)) | x86 Native PE<br>(UPX Packed) | `0x20ea0` | • `UPX0` (`raw_size: 0x0`, `virtual_size: 0x18000`) & `UPX1` section layout.<br>• `60 (pushal)` ➔ `BE 00 40 41 00 (mov esi, 0x414000)` ➔ `8D BD 00 D0 FE FF (lea edi, [ebp-0x13000])` in-memory decompression loop before dropping batch payload to `%TEMP%`. |
-| **`BEDeCode.exe`**<br>([`Batch-Encryption-DeCoder`](./references/batch_corpus_28/Batch-Encryption-DeCoder)) | x86 Native PE<br>(VB6 Runtime) | `0x1670` | • `68 90 17 40 00 (push 0x401790)` ➔ `E8 EE FF FF FF (call 0x1668)` ➔ `FF 25 60 11 40 00 (jmp [MSVBVM60.DLL!ThunRTMain])`.<br>• Symbol `DeCodeAndOutput` at `0x2a68` cross-verified with VB6 `CHRMAPSET` / `ALPHABET` struct in `src/modules/mdlMain.bas`. |
-| **`example.exe`**<br>([`Bat2Exe-dehoisted`](./references/batch_corpus_28/Bat2Exe-dehoisted)) | x86 .NET CIL<br>(Resource Wrapper) | `0x337e` | • `FF 25 00 20 40 00 (jmp [mscoree.dll!_CorExeMain])`.<br>• Embedded resource stream `"batch_cmd"` at offset `0x06ed` (RVA `0x24ed`) extracted at runtime into hidden `ProcessStartInfo("cmd.exe")`. |
+<table width="100%">
+  <thead>
+    <tr>
+      <th width="24%" align="left">🎯 Target Binary</th>
+      <th width="16%" align="left">🏗️ Architecture</th>
+      <th width="14%" align="center">📍 Entry Point</th>
+      <th width="46%" align="left">🔬 Key Disassembly &amp; Structural Findings (<code>ghidra-re-operator</code>)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong><code>bat2exe_12.exe</code></strong><br>
+        <small>(<a href="./references/batch_corpus_28/bat2exe-islamadel"><code>bat2exe-islamadel</code></a>)</small>
+      </td>
+      <td>x86 Native PE<br><sub>(UPX Packed)</sub></td>
+      <td align="center"><code>0x20ea0</code></td>
+      <td>
+        • <code>UPX0</code> (<code>raw: 0x0</code>, <code>vsize: 0x18000</code>) &amp; <code>UPX1</code> section layout.<br>
+        • <code>60 (pushal)</code> ➔ <code>BE 00 40 41 00 (mov esi, 0x414000)</code> ➔ <code>8D BD 00 D0 FE FF (lea edi, [ebp-0x13000])</code> in-memory decompression loop before dropping batch payload to <code>%TEMP%</code>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong><code>BEDeCode.exe</code></strong><br>
+        <small>(<a href="./references/batch_corpus_28/Batch-Encryption-DeCoder"><code>Batch-Encryption-DeCoder</code></a>)</small>
+      </td>
+      <td>x86 Native PE<br><sub>(VB6 Runtime)</sub></td>
+      <td align="center"><code>0x1670</code></td>
+      <td>
+        • <code>68 90 17 40 00 (push 0x401790)</code> ➔ <code>E8 EE FF FF FF (call 0x1668)</code> ➔ <code>FF 25 60 11 40 00 (jmp [MSVBVM60.DLL!ThunRTMain])</code>.<br>
+        • Symbol <code>DeCodeAndOutput</code> at <code>0x2a68</code> cross-verified with VB6 <code>CHRMAPSET</code> / <code>ALPHABET</code> struct in <code>src/modules/mdlMain.bas</code>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong><code>example.exe</code></strong><br>
+        <small>(<a href="./references/batch_corpus_28/Bat2Exe-dehoisted"><code>Bat2Exe-dehoisted</code></a>)</small>
+      </td>
+      <td>x86 .NET CIL<br><sub>(Resource Wrapper)</sub></td>
+      <td align="center"><code>0x337e</code></td>
+      <td>
+        • <code>FF 25 00 20 40 00 (jmp [mscoree.dll!_CorExeMain])</code>.<br>
+        • Embedded resource stream <code>"batch_cmd"</code> at offset <code>0x06ed</code> (RVA <code>0x24ed</code>) extracted at runtime into hidden <code>ProcessStartInfo("cmd.exe")</code>.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
