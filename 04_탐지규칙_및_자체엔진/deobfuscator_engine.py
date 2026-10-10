@@ -54,6 +54,11 @@ class BatchDeobfuscator:
                 i += 1
         return "".join(result)
 
+    def strip_empty_quotes(self, text):
+        """Strip consecutive empty quotes used for token fragmentation outside parameters (e.g., /a""l""l -> /all)."""
+        # Normalize non-quoted empty quote pairs inserted between word characters
+        return re.sub(r'([a-zA-Z0-9_\-\/\\])""([a-zA-Z0-9_\-\/\\])', r'\1\2', text)
+
     def extract_and_set_vars(self, line):
         """Identify 'set VAR=VAL' or 'set "VAR=VAL"' and record in symbol table."""
         # Clean line first
@@ -113,8 +118,9 @@ class BatchDeobfuscator:
         for pass_num in range(1, self.max_passes + 1):
             prev = current
             
-            # Step 1: Strip carets
+            # Step 1: Strip carets and normalize fragmented empty quotes
             current = self.strip_carets(current)
+            current = self.strip_empty_quotes(current)
             
             # Step 2: Line by line variable extraction and resolution
             lines = current.splitlines()
