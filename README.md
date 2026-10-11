@@ -92,6 +92,10 @@ This repository is a comprehensive reverse-engineering and defensive security re
 </p>
 
 
+<details>
+<summary><b>📊 Text-based Mermaid Pipeline Flowchart (Click to Expand / Collapse)</b></summary>
+<br>
+
 ```mermaid
 flowchart TD
     subgraph "1. Obfuscation & Packing Layer (난독화 및 패커 계층)"
@@ -116,9 +120,15 @@ flowchart TD
     end
 ```
 
+</details>
+
 ---
 
 ## 📂 Full Repository Directory Structure (전체 디렉터리 구조)
+
+<details open>
+<summary><b>📂 Full Repository Directory Tree (Click to Collapse / Expand)</b></summary>
+<br>
 
 ```text
 batch-obfuscation-research/
@@ -166,9 +176,15 @@ batch-obfuscation-research/
 └── README.md                                            # 🌟 First-Viewport Hero Showcase (7 Root Items)
 ```
 
+</details>
+
 ---
 
 ## 🔬 Ghidra MCP Binary Reverse Engineering Summary
+
+<details open>
+<summary><b>🔬 Ghidra MCP Disassembly & Structural Details (Click to Collapse / Expand)</b></summary>
+<br>
 
 <table width="100%">
   <thead>
@@ -219,6 +235,8 @@ batch-obfuscation-research/
   </tbody>
 </table>
 
+</details>
+
 ---
 
 ## 🚀 Quick Start (빠른 실행 가이드)
@@ -237,7 +255,10 @@ python references/batch_corpus_28/batch_deobfuscator/batch_deobfuscator/batch_in
 
 Distributed under the **Maya Thorne Systems & Security Research License (MT-SRL)**. See [`LICENSE`](LICENSE) for full legal text.
 
-### 🏛️ Open-Source Research Attribution
+<details>
+<summary><b>🏛️ Open-Source Research Attribution & Credits (Click to Expand / Collapse)</b></summary>
+<br>
+
 This educational and defensive research archive acknowledges and studies the seminal work of the cybersecurity research community:
 - **Invoke-DOSfuscation / Out-FINcodedCommand**: Daniel Bohannon (Mandiant / Apache 2.0 & BSD)
 - **batch_deobfuscator**: Canadian Centre for Cyber Security (CCCS) / Assemblyline (MIT)
@@ -249,4 +270,6 @@ This educational and defensive research archive acknowledges and studies the sem
 - **Bat2Exe-dehoisted & xorPacker**: Open-source PE compiler analysis & UPX/Overlay extraction (MIT)
 
 *All reverse engineering, binary triaging, and decompilation materials are published strictly for authorized security auditing, threat detection engineering, and defensible defensive education.*
+
+</details>
 
