@@ -52,6 +52,9 @@
 </p>
 
 
+<details>
+<summary><b>📊 Diagram Alur Mermaid Berbasis Teks (Klik untuk Membuka / Menutup)</b></summary>
+<br>
 ```mermaid
 flowchart TD
     subgraph "Obfuscation & Packing Layer"
@@ -71,6 +74,8 @@ flowchart TD
         C1 --> F2["Exorcism (cmd.exe!FindFixAndRun 0x116B0 Hook)"]
     end
 ```
+
+</details>
 
 ---
 

@@ -52,6 +52,9 @@
 </p>
 
 
+<details>
+<summary><b>📊 텍스트 기반 Mermaid 파이프라인 흐름도 (클릭하여 펼치기 / 접기)</b></summary>
+<br>
 ```mermaid
 flowchart TD
     subgraph "1. Obfuscation & Packing Layer (난독화 및 패커 계층)"
@@ -76,14 +79,21 @@ flowchart TD
     end
 ```
 
+</details>
+
 ---
 
 ## 📂 디렉터리 구성 (Repository Layout)
 
+<details open>
+<summary><b>📂 디렉터리 구성 상세 (클릭하여 접기 / 펼치기)</b></summary>
+<br>
 - 📁 **[`references/batch_corpus_28/`](../../references/batch_corpus_28)** — 중첩 `.git`이 평탄화(Flatten)되어 GitHub 웹에서 즉시 열람 가능한 41개 오픈소스 난독화기·디옵퓨스케이터·패커 원본 코드 트리.
 - 📁 **[`references/huggingface_ai/`](../../references/huggingface_ai)** — `LLM4Decompile-SFT-Deobfuscate`, `c-deobfuscate-mt`, JFrog 토큰 엔트로피 식별 데이터셋(ArXiv:2510.26847), EDR 텔레메트리 및 SigmaForge 룰셋.
 - 📁 **[`references/classic_samples/`](../../references/classic_samples)** — 30년 진화사 백서(`CLASSIC_TO_MODERN_EVOLUTION.md`), BatCloak/ScrubCrypt 3단계 메모리 복호화 심층 분석서 및 6종 실증 샘플.
 - 📁 **[`references/detection_rules/`](../../references/detection_rules)** — 자체 개발 파이썬 다중 패스 정적 디옵퓨스케이터(`deobfuscator_engine.py`), Mandiant/Unit 42 위협 인텔리전스 백서, Sigma 및 YARA 탐지 룰.
+
+</details>
 
 ---
 

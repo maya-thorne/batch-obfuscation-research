@@ -52,6 +52,9 @@
 </p>
 
 
+<details>
+<summary><b>📊 टेक्स्ट-आधारित Mermaid पाइपलाइन फ़्लोचार्ट (विस्तार / संक्षिप्त करने के लिए क्लिक करें)</b></summary>
+<br>
 ```mermaid
 flowchart TD
     subgraph "Obfuscation & Packing Layer"
@@ -71,6 +74,8 @@ flowchart TD
         C1 --> F2["Exorcism (cmd.exe!FindFixAndRun 0x116B0 Hook)"]
     end
 ```
+
+</details>
 
 ---
 
